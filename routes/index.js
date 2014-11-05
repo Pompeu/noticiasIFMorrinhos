@@ -1,43 +1,36 @@
 var express = require('express'),
 	router 	= express.Router(),
-	jsdom 	= require('jsdom'),
-	fs		= require('fs'),
+	request = require('request'),
+	cheerio = require('cheerio'),
+	fs 		= require('fs'),
 	objToJson,
-	jquery 	= fs.readFileSync("public/javascripts/jquery-min.js", "utf-8");
+	target = "http://ifgoiano.edu.br/morrinhos/home/index.php";
 
 function atualizar(){
-	jsdom.env({
-        url: "http://ifgoiano.edu.br/morrinhos/home/index.php",
-        src: [jquery],
-        done: function (errors, window) {
-           	var $ = window.$;
-           	objToJson = [ ];
-           	var titulo = "";
-           	$("h2:not(:last)").each(function (){
-           		titulo = myTrim($(this).text());
-           		objToJson.push({ "Titulo" : titulo });  
-           	});
-           	$("p:not(:last)").each(function (){
-           		if($(this).text() != "" && $(this).text() != "\n")
-           	 		objToJson.push({ "Texto" : $(this).text() });  
-           	});
-		    fs.writeFile("noticias.json", JSON.stringify(objToJson) , function(err) {
-		    	if(err) {
-		        	throw err;
-		    	} else {
-		        	console.log("The file was saved!");
-		    	}
-			});
-           	return objToJson;
-        }
-      });
-}
-/*
-	<div class="article-content">
-	<h2 class="contentheading">
-	<div class="contentpaneopen">
+	request(target, function(err, response, body){
 
-*/
+		if(!err && response.statusCode === 200){
+			$ = cheerio.load(body);
+			objToJson = [ ];
+			$(".contentpaneopen ").each(function(index,artigos){
+				var titulos = $(artigos).find('h2');
+				var texto = $(artigos).find('p');
+				
+				objToJson.push({ "Titulo" : myTrim($(titulos).text()) ,
+					 "Texto" : myTrim($(texto).text()) }); 		
+				
+			});
+		}
+		fs.writeFile("noticias.json", JSON.stringify(objToJson) , function(err) {
+			if(err) {
+				throw err;
+			} else {
+				console.log("The file was saved!");
+			}
+		});
+		
+	});	
+}
 
 /*
 	Thx to W3c Schol for this algoritmn
