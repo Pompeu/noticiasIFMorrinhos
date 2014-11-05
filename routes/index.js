@@ -6,7 +6,7 @@ var express = require('express'),
 	jquery 	= fs.readFileSync("public/javascripts/jquery-min.js", "utf-8");
 
 function atualizar(){
-	 jsdom.env({
+	jsdom.env({
         url: "http://ifgoiano.edu.br/morrinhos/home/index.php",
         src: [jquery],
         done: function (errors, window) {
@@ -17,8 +17,9 @@ function atualizar(){
            		titulo = myTrim($(this).text());
            		objToJson.push({ "Titulo" : titulo });  
            	});
-           	$("p:not(:last)" ).each(function (){
-           	 	objToJson.push({ "Texto" : $(this).text() });  
+           	$("p:not(:last)").each(function (){
+           		if($(this).text() != "" && $(this).text() != "\n")
+           	 		objToJson.push({ "Texto" : $(this).text() });  
            	});
 		    fs.writeFile("noticias.json", JSON.stringify(objToJson) , function(err) {
 		    	if(err) {
@@ -31,6 +32,12 @@ function atualizar(){
         }
       });
 }
+/*
+	<div class="article-content">
+	<h2 class="contentheading">
+	<div class="contentpaneopen">
+
+*/
 
 /*
 	Thx to W3c Schol for this algoritmn
@@ -45,7 +52,7 @@ router.get('/' , function(req , res){
 	var dados = fs.readFileSync('noticias.json');	 
 	res.json(JSON.parse(dados));
 });
-
+/*
 router.get('/json' , function(req , res , next){ 
 	res.jsonp(JSON.parse(fs.readFileSync('noticias.json')));
 });
@@ -53,5 +60,5 @@ router.get('/json' , function(req , res , next){
 router.get('/dl' , function(req , res){ 
 	res.download('noticias.json');	
 });
-
+*/
 module.exports = router;
