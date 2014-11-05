@@ -52,7 +52,7 @@ router.get('/' , function(req , res){
 	var dados = fs.readFileSync('noticias.json');	 
 	res.json(JSON.parse(dados));
 });
-/*
+
 router.get('/json' , function(req , res , next){ 
 	res.jsonp(JSON.parse(fs.readFileSync('noticias.json')));
 });
@@ -60,5 +60,5 @@ router.get('/json' , function(req , res , next){
 router.get('/dl' , function(req , res){ 
 	res.download('noticias.json');	
 });
-*/
+
 module.exports = router;
