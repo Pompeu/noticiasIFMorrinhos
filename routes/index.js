@@ -31,35 +31,27 @@ function atualizar(){
         }
       });
 }
-//class="blog_more"
+
 /*
-	Thx to W3c Schol for this
-	algoritmn
+	Thx to W3c Schol for this algoritmn
 	http://www.w3schools.com/jsref/jsref_trim_string.asp
 */
 function myTrim(x) {
     return x.replace(/^\s+|\s+$/gm,'');
 }
 
-var atualizarJson = function(time , callback, outer){
-
-	outer();
-	var stop = new Date().getTime();
-    while(new Date().getTime() < stop + time) {
-        
-    }
-    callback();
-}
 router.get('/' , function(req , res){
-	
-	var dados = fs.readFileSync('noticias.json');
-	 
-	atualizarJson(1000, atualizar, res.json(JSON.parse(dados)));
-	
-	
+	atualizar();
+	var dados = fs.readFileSync('noticias.json');	 
+	res.json(JSON.parse(dados));
 });
-router.get('/json' , function(req , res){ 
-	res.send(fs.readFileSync('noticias.json'))	
+
+router.get('/json' , function(req , res , next){ 
+	res.jsonp(JSON.parse(fs.readFileSync('noticias.json')));
+});
+
+router.get('/dl' , function(req , res){ 
+	res.download('noticias.json');	
 });
 
 module.exports = router;
