@@ -1,53 +1,19 @@
 var express = require('express'),
-	router 	= express.Router(),
-	request = require('request'),
-	cheerio = require('cheerio'),
+	router 	= express.Router()
 	fs 		= require('fs'),
-	objToJson,
-	target = "http://ifgoiano.edu.br/morrinhos/home/index.php";
+	noticias = require('../models/noticias.js');
 
-function atualizar(){
-	request(target, function(err, response, body){
-
-		if(!err && response.statusCode === 200){
-			$ = cheerio.load(body);
-			objToJson = [ ];
-			$(".contentpaneopen ").each(function(index,artigos){
-				var titulos = $(artigos).find('h2');
-				var texto = $(artigos).find('p');
-				
-				objToJson.push({ "Titulo" : myTrim($(titulos).text()) ,
-					 "Texto" : myTrim($(texto).text()) }); 		
-				
-			});
-		}
-		fs.writeFile("noticias.json", JSON.stringify(objToJson) , function(err) {
-			if(err) {
-				throw err;
-			} else {
-				console.log("The file was saved!");
-			}
-		});
-		
-	});	
-}
-
-/*
-	Thx to W3c Schol for this algoritmn
-	http://www.w3schools.com/jsref/jsref_trim_string.asp
-*/
-function myTrim(x) {
-    return x.replace(/^\s+|\s+$/gm,'');
-}
+var not = function(){
+	noticias.atualizar();
+}  
 
 router.get('/' , function(req , res){
-	atualizar();
-	var dados = fs.readFileSync('noticias.json');	 
-	res.json(JSON.parse(dados));
+	res.json(JSON.parse(fs.readFileSync('noticias.json','utf8')));
 });
 
-router.get('/json' , function(req , res , next){ 
-	res.jsonp(JSON.parse(fs.readFileSync('noticias.json')));
+router.get('/json' , function(req , res){
+	not();	
+  	res.jsonp(JSON.parse(fs.readFileSync('noticias.json','utf8')));
 });
 
 router.get('/dl' , function(req , res){ 
