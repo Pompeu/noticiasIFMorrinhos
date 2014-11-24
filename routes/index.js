@@ -3,21 +3,26 @@ var express = require('express'),
 	fs 		= require('fs'),
 	noticias = require('../models/noticias.js');
 
-var not = function(){
-	noticias.atualizar();
-}  
 
 router.get('/' , function(req , res){
-	res.json(JSON.parse(fs.readFileSync('noticias.json','utf8')));
+	res.render('index');
 });
-
+//renderizando noticias com callback
 router.get('/json' , function(req , res){
-	not();	
-  	res.jsonp(JSON.parse(fs.readFileSync('noticias.json','utf8')));
+	fs.readFile('noticias.json',function(err,noticias){
+		if(err){
+			noticias.atualizar();
+			throw err;	
+		}
+		res.jsonp(JSON.parse(noticias));
+	});
+  	
 });
-
+//disponibilizando json para dl
 router.get('/dl' , function(req , res){ 
 	res.download('noticias.json');	
 });
+//atualizando noticias cada 3 minutos
+setInterval(noticias.atualizar,1800000);
 
 module.exports = router;

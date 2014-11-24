@@ -2,7 +2,8 @@ var	request = require('request'),
 	cheerio = require('cheerio'),
 	fs 		= require('fs'),
 	objToJson,
-	target = "http://ifgoiano.edu.br/morrinhos/home/index.php";
+	target = "http://ifgoiano.edu.br/morrinhos/home/index.php",
+	inicio,fim;
 
 
 exports.atualizar = function(){
@@ -19,6 +20,7 @@ exports.atualizar = function(){
 		}		
 	});
 	gravarNoticias(objToJson);
+		inicio = new Date();
 }
 /*
 	Thx to W3c Schol for this algoritmn
@@ -29,5 +31,7 @@ function myTrim(x) {
 }
 
 function gravarNoticias(json){
+	fim = new Date();
 	fs.writeFileSync("noticias.json", JSON.stringify(json));
+	console.log(Math.abs(inicio - fim));
 }
