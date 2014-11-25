@@ -10,3 +10,13 @@ a {
 .testo{
 	text-align: justify;
 }
+
+.galeria{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+ .foto {
+      padding: 10px;
+	  float: left;
+ }

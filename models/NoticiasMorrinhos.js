@@ -2,8 +2,7 @@ var	request = require('request'),
 	cheerio = require('cheerio'),
 	fs 		= require('fs'),
 	objToJson,
-	target = "http://ifgoiano.edu.br/morrinhos/home/index.php",
-	inicio,fim;
+	target = "http://ifgoiano.edu.br/morrinhos/home/index.php";
 
 
 exports.atualizar = function(){
@@ -14,13 +13,15 @@ exports.atualizar = function(){
 			$(".contentpaneopen ").each(function(index,artigos){
 				var titulos = $(artigos).find('h2');
 				var texto 	= $(artigos).find('p');
+				var data 	= $(artigos).find('.createdate');		
 				objToJson.push({"Titulo" : myTrim($(titulos).text()) ,
-					 			"Texto" : myTrim($(texto).text()) }); 		
+					 			"Texto" : myTrim($(texto).text()),
+					 			"Data" : myTrim($(data).text())}); 		
 			});
 		}		
 	});
 	gravarNoticias(objToJson);
-		inicio = new Date();
+	
 }
 /*
 	Thx to W3c Schol for this algoritmn
@@ -31,7 +32,5 @@ function myTrim(x) {
 }
 
 function gravarNoticias(json){
-	fim = new Date();
-	fs.writeFileSync("noticias.json", JSON.stringify(json));
-	console.log(Math.abs(inicio - fim));
+	fs.writeFile("noticias.json", JSON.stringify(json));
 }
