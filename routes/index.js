@@ -38,7 +38,8 @@ router.get('/dl' , function(req , res){
 setInterval(function(){
 	noticias.atualizar();
 	noticiasIF.atualizar();
-},5000);
+	console.log(new Date().getSeconds());
+},15000);
 
 
 
