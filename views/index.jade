@@ -1,5 +1,16 @@
 extends layout
 
 block content
-	p Bem vindo a API de noticias do IF Goiano
+	h1 Bem vindo a API de noticias do IF Goiano
+	div(ng-app="noticiasApp")
+		div(class="noticias" ng-controller="NoticiasController")
+			h1 IF Morrinhos
+			div(ng-repeat="morrinhos in noticiasMorrinhos")
+				p(class="titulo blink")  {{morrinhos.Titulo}}
+				p(class="texto")         {{morrinhos.Texto}}
+			h1 IF Goiania
+			div(ng-repeat="goiania in noticiasGoiania")
+				p(class="titulo blink")  {{goiania.Titulo}}
+				p(class="texto")         {{goiania.Texto}}
+	
 	
