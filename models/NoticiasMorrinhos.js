@@ -1,5 +1,6 @@
 var	request = require('request'),
 	cheerio = require('cheerio'),
+	trim = require('../plugins').trin,
 	fs 		= require('fs'),
 	objToJson,
 	target = "http://ifgoiano.edu.br/morrinhos/home/index.php";
@@ -14,21 +15,14 @@ exports.atualizar = function(){
 				var titulos = $(artigos).find('h2');
 				var texto 	= $(artigos).find('p');
 				var data 	= $(artigos).find('.createdate');		
-				objToJson.push({"Titulo" : myTrim($(titulos).text()) ,
-					 			"Texto" : myTrim($(texto).text()),
-					 			"Data" : myTrim($(data).text())}); 		
+				objToJson.push({"Titulo" : trim($(titulos).text()) ,
+					 			"Texto" : trim($(texto).text()),
+					 			"Data" : trim($(data).text())}); 		
 			});
 		}		
 	});
 	gravarNoticias(objToJson);
 	
-}
-/*
-	Thx to W3c Schol for this algoritmn
-	http://www.w3schools.com/jsref/jsref_trim_string.asp
-*/
-function myTrim(x) {
-    return x.replace(/^\s+|\s+$/gm,'');
 }
 
 function gravarNoticias(json){

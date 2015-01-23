@@ -1,0 +1,9 @@
+Criar uma rota para cara site
+
+api/morrinhos
+api/goiania
+api/ceres
+api/urutai
+api/rioverde
+
+gravar todoas noticias no mesmo json e fazer backup no mongoDB

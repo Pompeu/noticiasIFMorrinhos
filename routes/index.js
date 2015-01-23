@@ -1,8 +1,6 @@
 var express = require('express'),
-	router 	= express.Router(),
-	fs 		= require('fs'),
-	noticias = require('../models/NoticiasMorrinhos.js'),
-	noticiasIF = require('../models/NoticiasIFGoiano.js');
+	router 	= express.Router();
+	
 
 router.get('/' , function(req , res){
 	res.render('index');	
@@ -10,35 +8,13 @@ router.get('/' , function(req , res){
 
 //renderizando noticias com callback
 router.get('/json' , function(req , res){
-	fs.readFile('noticias.json',function(err,noticias){
-		if(err){
-			noticias.atualizar();
-			throw err;	
-		}
-		res.jsonp(JSON.parse(noticias));
-	});
-	
+	res.json(require('../noticias.json'));
 });
+
 //renderizando noticias com callback
 router.get('/jsonif' , function(req , res){
-	fs.readFile('noticiasIF.json',function(err,noticiasIF){
-		if(err){
-			noticiasIF.atualizar();
-			throw err;	
-		}
-		res.jsonp(JSON.parse(noticiasIF));
-	});
-	
+	res.json(require('../noticiasIF.json'));
 });
-//disponibilizando json para dl
-router.get('/dl' , function(req , res){ 
-	res.download('noticias.json');	
-});
-//atualizando noticias cada 30 minutos
-setInterval(function(){
-	noticias.atualizar();
-	noticiasIF.atualizar();
-},15000);
 
 
 

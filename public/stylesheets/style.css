@@ -101,12 +101,12 @@ h1 {
 }
 .texto{
     border: 0 none;
-    
     outline: 0 none;
     padding: 0;
     vertical-align: baseline;
     text-align: justify;
 }
+
 .event {
     border-radius:4px;
     -webkit-border-radius:4px;

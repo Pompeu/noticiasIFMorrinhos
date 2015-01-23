@@ -1,5 +1,6 @@
 var	request = require('request'),
 	cheerio = require('cheerio'),
+	trim = require('../plugins').trin,
 	fs 		= require('fs'),
 	objToJson,
 	target = "http://www.ifgoiano.edu.br/home/";
@@ -17,32 +18,25 @@ exports.atualizar = function(){
 			$("#noticias").each(function(index,artigos){
 				var titulos = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
-				objToJson.push({"Titulo" : myTrim($(titulos).text()) ,
-					 			"Texto" : myTrim($(texto).text()) }); 		
+				objToJson.push({"Titulo" : trim($(titulos).text()) ,
+					 			"Texto" : trim($(texto).text()) }); 		
 			});
 			$("#complementaresquerda").each(function(index,artigos){
 				var titulos = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
-				objToJson.push({"Titulo" : myTrim($(titulos).text()) ,
-					 			"Texto" : myTrim($(texto).text()) }); 		
+				objToJson.push({"Titulo" : trim($(titulos).text()) ,
+					 			"Texto" : trim($(texto).text()) }); 		
 			});
 			$("#complementardireita").each(function(index,artigos){
 				var titulos = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
-				objToJson.push({"Titulo" : myTrim($(titulos).text()) ,
-					 			"Texto" : myTrim($(texto).text()) }); 		
+				objToJson.push({"Titulo" : trim($(titulos).text()) ,
+					 			"Texto" : trim($(texto).text()) }); 		
 			});
 		}		
 	});
 	gravarNoticias(objToJson);
 		
-}
-/*
-	Thx to W3c Schol for this algoritmn
-	http://www.w3schools.com/jsref/jsref_trim_string.asp
-*/
-function myTrim(x) {
-    return x.replace(/^\s+|\s+$/gm,'');
 }
 
 function gravarNoticias(json){
