@@ -10,7 +10,7 @@ function atulizarnoticiasHandler() {
 		debug('atualizando noticias')
 		noticias.atualizar();
 		noticiasIF.atualizar();
-	},25000);
+	},10000);
 	
 }
 module.exports = exports = atulizarnoticiasHandler;
