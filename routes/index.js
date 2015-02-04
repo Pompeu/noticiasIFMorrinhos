@@ -16,6 +16,4 @@ router.get('/jsonif' , function(req , res){
 	res.json(require('../noticiasIF.json'));
 });
 
-
-
 module.exports = router;

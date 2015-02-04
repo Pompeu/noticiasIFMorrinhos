@@ -10,18 +10,20 @@ exports.atualizar = function(){
 	request(target, function(err, response, body){
 		if(!err && response.statusCode === 200){
 			$ = cheerio.load(body);
-			objToJson = [ ];
+			objToJson = new Array();
 			$(".contentpaneopen ").each(function(index,artigos){
 				var titulos = $(artigos).find('h2');
 				var texto 	= $(artigos).find('p');
 				var data 	= $(artigos).find('.createdate');		
 				objToJson.push({"Titulo" : trim($(titulos).text()) ,
 					 			"Texto" : trim($(texto).text()),
-					 			"Data" : trim($(data).text())}); 		
+					 			"Data" : trim($(data).text()),
+					 			"Morrinhos" : "Morrinhos"}); 		
 			});
 		}		
 	});
-	gravarNoticias(objToJson);
+	if(objToJson !== 'undefined')
+		gravarNoticias(objToJson);
 	
 }
 
