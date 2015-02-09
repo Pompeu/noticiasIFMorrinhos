@@ -1,6 +1,7 @@
 var	request = require('request'),
 	cheerio = require('cheerio'),
 	trim = require('../plugins').trin,
+	Noticias = require('./noticias'),
 	fs 		= require('fs'),
 	objToJson,
 	target = "http://www.ifgoiano.edu.br/home/";
@@ -18,23 +19,23 @@ exports.atualizar = function(){
 			$("#noticias").each(function(index,artigos){
 				var titulos = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
-				objToJson.push({"Titulo" : trim($(titulos).text()) ,
-					 			"Texto" : trim($(texto).text()),
-					 			"Goiania" : "Goiania" }); 		
+				objToJson.push({"titulo" : trim($(titulos).text()) ,
+					 			"texto" : trim($(texto).text()),
+					 			"instituicao" : "Goiania" }); 		
 			});
 			$("#complementaresquerda").each(function(index,artigos){
 				var titulos = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
-				objToJson.push({"Titulo" : trim($(titulos).text()) ,
-					 			"Texto" : trim($(texto).text()),
-					 			"Goiania" : "Goiania" });		
+				objToJson.push({"titulo" : trim($(titulos).text()) ,
+					 			"texto" : trim($(texto).text()),
+					 			"instituicao" : "Goiania" });		
 			});
 			$("#complementardireita").each(function(index,artigos){
 				var titulos = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
-				objToJson.push({"Titulo" : trim($(titulos).text()) ,
-					 			"Texto" : trim($(texto).text()),
-					 			"Goiania" : "Goiania" });		
+				objToJson.push({"titulo" : trim($(titulos).text()),
+					 			"texto" : trim($(texto).text()),
+					 			"instituicao" : "Goiania" });		
 			});
 		}		
 	});
@@ -44,5 +45,10 @@ exports.atualizar = function(){
 }
 
 function gravarNoticias(json){
-	fs.writeFile("noticiasIF.json", JSON.stringify(json));
+	debug('gravar noticias goiania')
+	Noticias
+		.create( json ,function(err , noticias) {
+			console.log(err || noticias );
+		})
+	//fs.writeFile('goiania.json', JSON.stringify(json));
 }

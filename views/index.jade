@@ -4,12 +4,10 @@ block content
 	h1 Bem vindo a API de noticias do IF Goiano
 	div(ng-app="noticiasApp")
 		div(class="noticias" ng-controller="NoticiasController")
-			h1 IF Morrinhos
-			div(ng-repeat="morrinhos in noticiasMorrinhos")
-				p(class="titulo blink")  {{morrinhos.Titulo}}
-				p(class="texto")         {{morrinhos.Texto}}
-					p(class="data")      {{morrinhos.Data}}
-			h1 IF Goiania
-			div(ng-repeat="goiania in noticiasGoiania")
-				p(class="titulo blink")  {{goiania.Titulo}}
-				p(class="texto")         {{goiania.Texto}}
+			h1 {{noticia.institucao}}
+			div(ng-repeat="noticia in noticias.noticias")
+				p(class="titulo blink")  {{noticia.titulo}}
+				p(class="texto")         {{noticia.texto}}
+					p(class="data")      {{noticia.data | date:"dd/MM/yyyy 'em' h:mma"}}
+					p(class="data")      {{noticia.instituicao }}
+			

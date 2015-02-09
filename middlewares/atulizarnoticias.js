@@ -2,12 +2,11 @@
 function atulizarnoticiasHandler() {
   // start here with atulizarnoticias.js
   	var noticias = require('../models');
-	//atualizando noticias cada 10 segundos
+  	//atualizando noticias cada 10 segundos
 	setInterval(function(){
 		debug('atualizando noticias')
 		noticias.Morrinhos.atualizar();
 		noticias.Goiania.atualizar();
-	},1000);
-	
+	},60000);
 }
 module.exports = exports = atulizarnoticiasHandler;

@@ -1,25 +1,12 @@
 var noticiasApp = angular.module('noticiasApp',[]);
 
 noticiasApp.controller('NoticiasController', function ($scope,$http) {
-	var urlMorrinhos = '/json';
-	var urlGoiania = '/jsonIF';
-	
-	 $http.get(urlMorrinhos)
+	var routeOfNoticias = '/noticias';	
+	 $http.get(routeOfNoticias)
     .success(function(data){
-       console.log('success');
-       $scope.noticiasMorrinhos = data;
+       $scope.noticias = data;
     })
     .error(function () {
       console.log('error')
     });
-
-    $http.get(urlGoiania)
-    .success(function(data){
-       console.log('success');
-       $scope.noticiasGoiania = data;
-    })
-    .error(function () {
-      console.log('error')
-    });		
-
 });

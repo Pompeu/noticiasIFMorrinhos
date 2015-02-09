@@ -5,7 +5,10 @@ function noticiasHandler() {
   var schema = null;
 
   schema = new Schema({
-    // start with schema here
+    titulo : { type: String , unique: true , required : true},
+    texto : { type: String , trim : true ,required : true },
+    instituicao : { type: String , required : true},
+    data : { type : Date , default : Date.now}
   });
 
   return mongoose.model('Noticias', schema);

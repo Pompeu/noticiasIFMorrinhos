@@ -4,14 +4,37 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var middlewares = require('./middlewares')
+var mongoose = require('mongoose');
 
-middlewares.atulizarnoticias();
+var noticias = require('./middlewares');
+
+noticias.atulizarnoticias();
 
 var routes = require('./routes/index');
 
 var app = express();
+function connectionHandler(err ,res) {
+    debug( err || 'on mongolab');
+};
+function connectionHandlerLocal(err) {
+    debug( err || 'on local');
+};
 
+var local = 'mongodb://localhost/noticias';
+ 
+var mongolab = 'mongodb://pompeu:552525@ds049130.mongolab.com:49130/pompeuapi';
+
+mongoose
+    .connect(mongolab)
+    .connection
+    .on('connected', connectionHandler)
+    .on('error',function() {
+        mongoose
+        .connect(local)
+        .connection
+        .on('connected', connectionHandlerLocal)
+    });
+ 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

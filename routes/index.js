@@ -1,4 +1,6 @@
 var express = require('express'),
+	noticiasController  = require('../controllers').noticias,
+	noticiasMiddlerware = require('../middlewares').noticias,
 	router 	= express.Router();
 	
 
@@ -7,13 +9,7 @@ router.get('/' , function(req , res){
 });
 
 //renderizando noticias com callback
-router.get('/json' , function(req , res){
-	res.json(require('../noticias.json'));
-});
-
-//renderizando noticias com callback
-router.get('/jsonif' , function(req , res){
-	res.json(require('../noticiasIF.json'));
-});
+router.get('/noticias',noticiasMiddlerware ,noticiasController)
+	
 
 module.exports = router;
