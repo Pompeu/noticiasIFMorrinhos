@@ -4,17 +4,21 @@ function noticiasHandler(req, res, next) {
   var noticias = require('../models/noticias');
 
   res.locals.out = { err : null , noticias : [] , status : false };
-
   noticias
+    .find({}, null, {sort: {data: -1}},
+    function (err, noticias) {
+    if(err){
+        res.locals.out.err = err;
+      }else{
+        res.locals.out.noticias = noticias;
+        res.locals.out.status = true;
+      }
+      next();
+  });
+  /*noticias
   	.find({},function(err , noticias) {
-  		if(err){
-  			res.locals.out.err = err;
-  		}else{
-  			res.locals.out.noticias = noticias;
-  			res.locals.out.status = true;
-  		}
-  		next();	
-  	})
+  			
+  	})*/
   
 }
 module.exports = exports = noticiasHandler;
