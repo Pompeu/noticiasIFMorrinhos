@@ -4,6 +4,7 @@ function noticiasHandler(req, res, next) {
   var noticias = require('../models/noticias');
 
   res.locals.out = { err : null , noticias : [] , status : false };
+  
   noticias
     .find({}, null, {sort: {data: -1}},
     function (err, noticias) {
@@ -15,10 +16,7 @@ function noticiasHandler(req, res, next) {
       }
       next();
   });
-  /*noticias
-  	.find({},function(err , noticias) {
-  			
-  	})*/
+  
   
 }
 module.exports = exports = noticiasHandler;

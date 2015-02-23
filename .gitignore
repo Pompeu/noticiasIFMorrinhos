@@ -1,5 +1,8 @@
 node_modules/
 notcias*
+*.txt
 atividades
 tests/
 .agni
+views/app/src
+gulpfile

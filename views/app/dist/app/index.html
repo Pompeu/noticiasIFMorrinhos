@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>App Main</title>
+  <link rel="stylesheet" href='/bower_components/angular-material/angular-material.min.css'>
+</head>
+<body ng-app="App">
+  <md-content  ng-controller="MainCtrl">
+      <md-card>
+      <md-input-container layout="column" layout-align="center center">
+        <label>Buscar Noticia por instituicao </label>
+        <input ng-model="noticia.instituicao">
+      </md-input-container>
+      <div ng-if='!noticias.length' layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      </div>
+    </md-card>
+    <div ng-repeat="noticia in noticias | filter:noticia.instituicao" layout-sm="column" layout-align="space-around" >
+     <md-card>
+      <md-toolbar class="md-primary">
+         <h3 style="margin : 0 auto;">{{noticia.titulo}}</h3>
+      </md-toolbar>
+      <md-item-content>
+        <div class="md-tile-content">     
+          <article>{{noticia.texto}}</article>
+          <h2>{{noticia.instituicao}} em {{noticia.data | date:"dd.MM.yyyy 'as' hh:mm a"}}</h2>
+        </div>
+      </md-item-content>
+      </md-card>
+    </div>
+    
+  </md-content>
+
+  <script src='/bower_components/angular/angular.min.js'></script>
+  <script src='/bower_components/angular-animate/angular-animate.min.js'></script>
+  <script src='/bower_components/angular-aria/angular-aria.min.js'></script>
+  <script src='/bower_components/angular-material/angular-material.min.js'></script>
+  <script src='/bower_components/hammerjs/hammer.min.js'></script>
+  <script src='/scripts/all.min.js'></script>
+</body>
+</html>
