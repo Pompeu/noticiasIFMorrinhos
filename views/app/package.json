@@ -1,16 +1,4 @@
 {
-  "name": "gulpTest",
-  "version": "1.0.0",
-  "description": "gulp",
-  "main": "app.js",
-  "scripts": {
-    "test": "mocha"
-  },
-  "keywords": [
-    "gulp"
-  ],
-  "author": "Pompeu",
-  "license": "MIT",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",

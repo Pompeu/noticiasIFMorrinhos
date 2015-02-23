@@ -6,17 +6,9 @@ var express = require('express'),
   	router 	= express.Router();
 
 router.get('/' , function(req , res){
-  
   res.sendFile(path.join(clientDir, 'index.html'))
-  
 });
 
-//renderizando noticias com callback
-/*
-var clientDir = path.join(__dirname, '/views')
-router.get('/', function(req, res) {
-  res.sendFile(path.join(clientDir, 'app/dist/app/index.html'))
-})*/
 router.get('/noticias',noticiasMiddlerware ,noticiasController)
 
 module.exports = router;

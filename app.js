@@ -1,18 +1,18 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var cors = require('cors');
-var mongoose = require('mongoose');
-
-var noticias = require('./middlewares');
+var express = require('express'),
+    path = require('path'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    cors = require('cors'),
+    mongoose = require('mongoose'),
+    noticias = require('./middlewares');
 
 noticias.atulizarnoticias();
 
 var routes = require('./routes/index');
 
 var app = express();
+
 function connectionHandler(err ,res) {
     debug( err || 'on mongolab');
 };
