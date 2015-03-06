@@ -8,7 +8,7 @@
 <body ng-app="App">
   <md-content  ng-controller="MainCtrl">
       <md-card>
-      <md-input-container layout="column" layout-align="center center">
+      <md-input-container layout="column"  layout-align="center center">
         <label>Buscar Noticia por instituicao </label>
         <input ng-model="noticia.instituicao">
       </md-input-container>
@@ -17,8 +17,8 @@
       </div>
     </md-card>
     <div ng-repeat="noticia in noticias | filter:noticia.instituicao" layout-sm="column" layout-align="space-around" >
-     <md-card>
-      <md-toolbar class="md-primary">
+     <md-card flex flex-order="3" layout-margin>
+      <md-toolbar class="md-primary" >
          <h3 style="margin : 0 auto;">{{noticia.titulo}}</h3>
       </md-toolbar>
       <md-item-content>
