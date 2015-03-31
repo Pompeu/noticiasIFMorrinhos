@@ -19,23 +19,35 @@ exports.atualizar = function(){
 			$("#noticias").each(function(index,artigos){
 				var titulos = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
+				var lerMais = $(artigos).find('a');
+				
 				objToJson.push({"titulo" : trim($(titulos).text()) ,
 					 			"texto" : trim($(texto).text()),
-					 			"instituicao" : "Goiania" }); 		
+					 			"instituicao" : "Goiania" ,
+					 			"lerMais" : lerMais.attr('href')}); 		
 			});
 			$("#complementaresquerda").each(function(index,artigos){
 				var titulos = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
+				var lerMais = $(artigos).find('a');
+				
 				objToJson.push({"titulo" : trim($(titulos).text()) ,
 					 			"texto" : trim($(texto).text()),
-					 			"instituicao" : "Goiania" });		
+					 			"instituicao" : "Goiania",
+					 			"lerMais" : lerMais.attr('href')});		
 			});
 			$("#complementardireita").each(function(index,artigos){
 				var titulos = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
-				objToJson.push({"titulo" : trim($(titulos).text()),
+				var lerMais = $(artigos).find('a');
+
+				objToJson.push(
+							{
+								"titulo" : trim($(titulos).text()),
 					 			"texto" : trim($(texto).text()),
-					 			"instituicao" : "Goiania" });		
+					 			"instituicao" : "Goiania" ,
+					 			"lerMais" : lerMais.attr('href')
+					 		});		
 			});
 		}		
 	});
@@ -50,5 +62,4 @@ function gravarNoticias(json){
 		.create( json ,function(err , noticias) {
 			console.log(err || noticias );
 		})
-	//fs.writeFile('goiania.json', JSON.stringify(json));
 }

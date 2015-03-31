@@ -15,10 +15,14 @@ exports.atualizar = function(){
 			$(".contentpaneopen ").each(function(index,artigos){
 				var titulos = $(artigos).find('h2');
 				var texto 	= $(artigos).find('p');
-				var data 	= $(artigos).find('.createdate');		
-				objToJson.push({"titulo" : trim($(titulos).text()) ,
+				var data 	= $(artigos).find('.createdate');
+				var lerMais = $(artigos).find('a');
+				
+				objToJson.push(
+								{"titulo" : trim($(titulos).text()) ,
 					 			"texto" : trim($(texto).text()),
-					 			"instituicao" : "Morrinhos"}); 		
+					 			"instituicao" : "Morrinhos" ,
+					 			"lerMais" : "http://ifgoiano.edu.br/"+lerMais.attr('href')}); 		
 			});
 		}		
 	});
@@ -33,5 +37,4 @@ function gravarNoticias(json){
 		.create( json ,function(err , noticias) {
 			console.log(err || noticias );
 		})
-	//fs.writeFile('morrinhos.json', JSON.stringify(json));
 }

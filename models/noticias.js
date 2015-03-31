@@ -8,7 +8,8 @@ function noticiasHandler() {
     titulo : { type: String , unique: true , required : true},
     texto : { type: String , trim : true ,required : true },
     instituicao : { type: String , required : true},
-    data : { type : Date , default : Date.now}
+    data : { type : Date , default : Date.now},
+    lerMais : {type: String , trim : true ,required : true}
   });
 
   return mongoose.model('Noticias', schema);

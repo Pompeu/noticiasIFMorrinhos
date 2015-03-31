@@ -22,7 +22,7 @@ function connectionHandlerLocal(err) {
 
 var local = 'mongodb://localhost/noticias';
  
-var mongolab = 'mongodb://pompeu:552525@ds049130.mongolab.com:49130/pompeuapi';
+var mongolab = 'mongodb://pompeu:5525251@ds049130.mongolab.com:49130/pompeuapi';
 
 mongoose
     .connect(mongolab)
