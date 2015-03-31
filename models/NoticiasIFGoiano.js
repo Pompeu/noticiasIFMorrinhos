@@ -17,33 +17,36 @@ exports.atualizar = function(){
 			$ = cheerio.load(body);
 			objToJson = new Array();
 			$("#noticias").each(function(index,artigos){
-				var titulos = $(artigos).find('.titulo');
+				var titulo = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
 				var lerMais = $(artigos).find('a');
 				
-				objToJson.push({"titulo" : trim($(titulos).text()) ,
+				objToJson.push({
+								"titulo" : trim($(titulo).text()) ,
 					 			"texto" : trim($(texto).text()),
 					 			"instituicao" : "Goiania" ,
-					 			"lerMais" : lerMais.attr('href')}); 		
+					 			"lerMais" : lerMais.attr('href')
+					 		}); 		
 			});
 			$("#complementaresquerda").each(function(index,artigos){
-				var titulos = $(artigos).find('.titulo');
+				var titulo = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
 				var lerMais = $(artigos).find('a');
 				
-				objToJson.push({"titulo" : trim($(titulos).text()) ,
+				objToJson.push({
+								"titulo" : trim($(titulo).text()) ,
 					 			"texto" : trim($(texto).text()),
 					 			"instituicao" : "Goiania",
-					 			"lerMais" : lerMais.attr('href')});		
+					 			"lerMais" : lerMais.attr('href')
+					 		});		
 			});
 			$("#complementardireita").each(function(index,artigos){
-				var titulos = $(artigos).find('.titulo');
+				var titulo = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');
 				var lerMais = $(artigos).find('a');
 
-				objToJson.push(
-							{
-								"titulo" : trim($(titulos).text()),
+				objToJson.push({
+								"titulo" : trim($(titulo).text()),
 					 			"texto" : trim($(texto).text()),
 					 			"instituicao" : "Goiania" ,
 					 			"lerMais" : lerMais.attr('href')
@@ -60,6 +63,6 @@ function gravarNoticias(json){
 	debug('gravar noticias goiania')
 	Noticias
 		.create( json ,function(err , noticias) {
-			console.log(err || noticias );
+			debug(err || noticias );
 		})
 }

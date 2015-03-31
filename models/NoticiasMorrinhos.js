@@ -6,23 +6,23 @@ var	request = require('request'),
 	objToJson,
 	target = "http://ifgoiano.edu.br/morrinhos/home/index.php";
 
-
 exports.atualizar = function(){
 	request(target, function(err, response, body){
 		if(!err && response.statusCode === 200){
 			$ = cheerio.load(body);
 			objToJson = new Array();
 			$(".contentpaneopen ").each(function(index,artigos){
-				var titulos = $(artigos).find('h2');
+				var titulo = $(artigos).find('h2');
 				var texto 	= $(artigos).find('p');
 				var data 	= $(artigos).find('.createdate');
 				var lerMais = $(artigos).find('a');
 				
-				objToJson.push(
-								{"titulo" : trim($(titulos).text()) ,
+				objToJson.push({
+								"titulo" : trim($(titulo).text()) ,
 					 			"texto" : trim($(texto).text()),
 					 			"instituicao" : "Morrinhos" ,
-					 			"lerMais" : "http://ifgoiano.edu.br/"+lerMais.attr('href')}); 		
+					 			"lerMais" : "http://ifgoiano.edu.br"+lerMais.attr('href')
+					 		}); 		
 			});
 		}		
 	});
@@ -34,7 +34,7 @@ exports.atualizar = function(){
 function gravarNoticias(json){
 	debug('gravar noticias morrinhos');
 	Noticias
-		.create( json ,function(err , noticias) {
-			console.log(err || noticias );
+		.create( json , function(err , noticias) {
+			debug(err || noticias );
 		})
 }
