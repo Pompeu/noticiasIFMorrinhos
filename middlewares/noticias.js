@@ -15,8 +15,7 @@ function noticiasHandler(req, res, next) {
         res.locals.out.status = true;
       }
       next();
-  });
-  
+  });  
   
 }
 module.exports = exports = noticiasHandler;
