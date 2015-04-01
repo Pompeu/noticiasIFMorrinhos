@@ -45,8 +45,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/views/app/dist/app')));
+app.use(cors());
 
-app.use('/',cors(),routes);
+
+app.use('/noticias', routes);
+
+app.use('/', function (req , res) {
+    res.send("Api noticias IF Morrinhos"+
+                " use /noticias")
+})
 //atualizar noticias 
 
 

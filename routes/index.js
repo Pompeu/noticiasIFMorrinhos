@@ -3,6 +3,6 @@ var express = require('express'),
   	noticiasMiddlerware = require('../middlewares').noticias,
   	router 	= express.Router();
 
-router.get('/noticias',noticiasMiddlerware ,noticiasController)
+router.get('/',noticiasMiddlerware ,noticiasController)
 
 module.exports = router;
