@@ -1,0 +1,24 @@
+{
+  "name": "src",
+  "version": "0.0.0",
+  "authors": [
+    "Pompeu <itacir@hotmail.com>"
+  ],
+  "description": "bower_intens",
+  "main": "main.j",
+  "keywords": [
+    "js"
+  ],
+  "license": "MIT",
+  "homepage": "https://pure-shore-2163.herokuapp.com/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.14"
+  }
+}

@@ -11,7 +11,8 @@ angular.module('App', [])
         $scope.noticias = JSON.parse(localStorage.getItem('noticias'));
       })
   }])
-  .controller('ListContatoCtrl', ['$scope','$http', function ($scope,$http) {
+  .controller('ListContatoCtrl',
+   ['$scope','$http', function ($scope,$http) {
     $scope.items = null;
     $http.get('contato.json')
       .success(function(data) {

@@ -4,11 +4,13 @@ var gulp = require('gulp'),
     connect = require('gulp-connect');
 
 gulp.task('scripts', function() {
-  return gulp.src('src/*.js')
+  return gulp.src([
+    'src/bower_components/angular/angular.min.js',
+    'src/main.js'])
     .pipe(concat('all.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('dist/app/scripts'))
-    .pipe(connect.reload());;
+    .pipe(connect.reload());
 });
 
 gulp.task('html', function() {

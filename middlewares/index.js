@@ -2,3 +2,5 @@
 exports.atulizarnoticias = require('./atulizarnoticias');
 
 exports.noticias = require('./noticias');
+
+exports.contatos = require('./contatos');

@@ -4,5 +4,6 @@ notcias*
 atividades
 tests/
 .agni
-views/app/src
+AppCordova/node_modules/
+AppCordova/src/bower_componentes/
 gulpfile
