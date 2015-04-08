@@ -3,6 +3,6 @@ var express = require('express'),
   	middlerware = require('../middlewares/contatos'),
   	router 	= express.Router();
     
-router.get('/',middlerware ,controller)
+router.get('/',middlerware ,controller);
 
 module.exports = router;

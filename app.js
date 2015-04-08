@@ -10,7 +10,8 @@ var express = require('express'),
 noticias.atulizarnoticias();
 
 var routes = require('./routes/index'),
-    contatos = require('./routes/contatos');
+    contatos = require('./routes/contatos'),
+    contatosdocentes = require('./routes/contatosdocentes');
 
 
 var app = express();
@@ -52,7 +53,8 @@ app.use(cors());
 
 
 app.use('/noticias', routes);
-app.use('/contatos', contatos);
+app.use('/contatosdepartamentos', contatos);
+app.use('/contatosdocentes',contatosdocentes);
 
 app.use('/', function (req , res) {
     res.send("Api noticias IF Morrinhos"+
