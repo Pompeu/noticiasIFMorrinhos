@@ -1,12 +1,11 @@
 var	request = require('request'),
 	cheerio = require('cheerio'),
-	trim = require('../plugins').trin,
-	Noticias = require('./noticias'),
-	fs 		= require('fs'),
-	objToJson,
+	plugins = require('../plugins'),
+	fs 		= require('fs'),objToJson,
 	target = "http://ifgoiano.edu.br/morrinhos/home/index.php";
 
 exports.atualizar = function(){
+
 	request(target, function(err, response, body){
 		if(!err && response.statusCode === 200){
 			$ = cheerio.load(body);
@@ -16,25 +15,20 @@ exports.atualizar = function(){
 				var texto 	= $(artigos).find('p');
 				var data 	= $(artigos).find('.createdate');
 				var lerMais = $(artigos).find('a');
-				
+
 				objToJson.push({
-								"titulo" : trim($(titulo).text()) ,
-					 			"texto" : trim($(texto).text()),
+								"titulo" : plugins.trim($(titulo).text()) ,
+					 			"texto" : plugins.trim($(texto).text()),
 					 			"instituicao" : "Morrinhos" ,
 					 			"lerMais" : "http://ifgoiano.edu.br"+lerMais.attr('href')
 					 		}); 		
 			});
 		}		
 	});
-	if(objToJson !== 'undefined')
-		gravarNoticias(objToJson);
 	
-}
+	if(objToJson !== 'undefined'){
+		plugins.gravarnoticias(objToJson);
+	}
+	
+};
 
-function gravarNoticias(json){
-	debug('gravar noticias morrinhos');
-	Noticias
-		.create( json , function(err , noticias) {
-			debug(err || noticias );
-		})
-}

@@ -9,10 +9,16 @@ var express = require('express'),
 
 noticias.atulizarnoticias();
 
+
 var routes = require('./routes/index'),
     contatos = require('./routes/contatos'),
     contatosdocentes = require('./routes/contatosdocentes');
 
+
+
+var models = global.models = function(novas) {
+    return 55;
+};
 
 var app = express();
 
@@ -56,10 +62,11 @@ app.use('/noticias', routes);
 app.use('/contatosdepartamentos', contatos);
 app.use('/contatosdocentes',contatosdocentes);
 
-app.use('/', function (req , res) {
-    res.send("Api noticias IF Morrinhos"+
-                " use /noticias")
-})
+app.use('/',noticias.push, function (req , res) {
+  res.send("Api noticias IF Morrinhos"+
+                " use /noticias  /contatosdepartamentos /contatosdocentes");
+});
+
 //atualizar noticias 
 
 

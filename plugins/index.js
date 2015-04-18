@@ -1,4 +1,5 @@
 // file: plugins/index.js
-exports.trin = require('./trin');
+exports.trim = require('./trim');
+exports.gravarnoticias = require('./gravarnoticias');
 
 

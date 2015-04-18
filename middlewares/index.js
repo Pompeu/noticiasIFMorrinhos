@@ -3,3 +3,4 @@ exports.atulizarnoticias = require('./atulizarnoticias');
 exports.noticias = require('./noticias');
 exports.contatos = require('./contatos');
 exports.contatos = require('./contatodocentes');
+exports.push = require('./push');
