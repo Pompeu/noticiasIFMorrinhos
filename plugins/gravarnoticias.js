@@ -3,7 +3,7 @@ function gravarNoticiasHandler(json) {
   debug('gravar noticias Plugin');
   
   var Noticias = require('../models/noticias'),
-  var push = require("./push");
+  		push = require("./push");
 	
 		Noticias
 		.create( json ,function(err , noticias) {
