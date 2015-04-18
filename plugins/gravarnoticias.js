@@ -2,12 +2,12 @@
 function gravarNoticiasHandler(json) {
   debug('gravar noticias Plugin');
   
-  Noticias = require('../models/noticias'),
-  push = require("../middlewares/push");
+  var Noticias = require('../models/noticias'),
+  var push = require("./push");
 	
 		Noticias
 		.create( json ,function(err , noticias) {
-			//debug(err || noticias);
+			debug(err || noticias);
 			if(!err && noticias){
 				push();
 			}

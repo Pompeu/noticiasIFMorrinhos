@@ -15,11 +15,6 @@ var routes = require('./routes/index'),
     contatosdocentes = require('./routes/contatosdocentes');
 
 
-
-var models = global.models = function(novas) {
-    return 55;
-};
-
 var app = express();
 
 function connectionHandler(err ,res) {
@@ -62,13 +57,10 @@ app.use('/noticias', routes);
 app.use('/contatosdepartamentos', contatos);
 app.use('/contatosdocentes',contatosdocentes);
 
-app.use('/',noticias.push, function (req , res) {
+app.use('/',function (req , res) {
   res.send("Api noticias IF Morrinhos"+
                 " use /noticias  /contatosdepartamentos /contatosdocentes");
 });
-
-//atualizar noticias 
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,7 +2,6 @@
 
 function noticiasHandler(req, res) {
 	debug('noticas handler conroller');
-		
 	res.send(res.locals.out);
 }
 module.exports = exports = noticiasHandler;

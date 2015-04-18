@@ -1,4 +1,5 @@
 function pushHandler () {
+	
 	debug("middlerware push Handler");
 
 	var pushbots = require('pushbots');
