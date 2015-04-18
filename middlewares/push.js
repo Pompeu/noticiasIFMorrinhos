@@ -1,7 +1,7 @@
-function pushHandler (req, res, next) {
+function pushHandler () {
 	debug("middlerware push Handler");
 
-	/*var pushbots = require('pushbots');
+	var pushbots = require('pushbots');
 
 	var Pushbots = new pushbots.api({
 	  id:'552e15af17795960748b458d',
@@ -9,7 +9,7 @@ function pushHandler (req, res, next) {
 	});
 
 	Pushbots.setMessage("Novas Noticias Ok" ,1);
-*/
+
 };
 
 module.exports = exports = pushHandler;

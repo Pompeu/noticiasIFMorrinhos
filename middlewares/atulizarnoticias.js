@@ -7,6 +7,6 @@ function atulizarnoticiasHandler() {
 		debug('atualizando noticias')
 		noticias.Morrinhos.atualizar();
 		noticias.Goiania.atualizar();
-	},6000);
+	},60000);
 }
 module.exports = exports = atulizarnoticiasHandler;
