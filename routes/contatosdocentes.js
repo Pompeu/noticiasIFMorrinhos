@@ -1,9 +1,8 @@
 var express = require('express'),
     controller  = require('../controllers/contatodocentes'),
-    middlerware = require('../middlewares/contatodocentes'),
+    middlewares = require('../middlewares/contatodocentes'),
     router  = express.Router();
     
-router.get('/',middlerware ,controller)
-router.get('/',middlerware ,controller)
+router.get('/',middlewares ,controller);
 
 module.exports = router;

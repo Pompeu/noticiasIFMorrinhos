@@ -3,8 +3,20 @@ function contatosHandler(req, res, next) {
   // start here with contatos.js
   var contatos = require('../models/contato.json');
  
-  res.locals.out = { err : null , contatos : contatos || null , status : false };
+  res.locals.out = { err : null , contatos : [] , status : false };
+
+  function contatosHandler() {
+    if(contatos){
+      res.locals.out.contatos = contatos;
+      res.locals.out.status = true;
+    }else{
+      res.locals.out.status = true;
+      res.locals.out.err = "nenhum contado";
+    }
+    next();
+  };
   
-  next();  
+  return contatosHandler(); 
+
 }
 module.exports = exports = contatosHandler;
