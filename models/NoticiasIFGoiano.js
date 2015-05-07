@@ -14,7 +14,7 @@ exports.atualizar = function(){
 	request(target, function(err, response, body){
 		if(!err && response.statusCode === 200){
 			$ = cheerio.load(body);		
-			objToJson = new Array();
+			objToJson = [];
 			$("#noticias").each(function(index,artigos){
 				var titulo = $(artigos).find('.titulo');
 				var texto 	= $(artigos).find('.entry');

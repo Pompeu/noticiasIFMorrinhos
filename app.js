@@ -19,10 +19,12 @@ var app = express();
 
 function connectionHandler(err ,res) {
     debug( err || 'on mongolab');
-};
+}
+
 function connectionHandlerLocal(err) {
     debug( err || 'on local');
-};
+}
+
 
 var local = 'mongodb://localhost/noticias';
  
@@ -36,7 +38,7 @@ mongoose
         mongoose
         .connect(local)
         .connection
-        .on('connected', connectionHandlerLocal)
+        .on('connected', connectionHandlerLocal);
     });
  
 

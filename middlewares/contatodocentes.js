@@ -14,7 +14,7 @@ function contatosDocentesHandler(req, res, next) {
       res.locals.out.err = "nenhum contado";
     }
     next();
-  };
+  }
   
   return contatosHandler();   
 }
