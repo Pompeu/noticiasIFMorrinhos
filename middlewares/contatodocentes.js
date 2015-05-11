@@ -5,7 +5,7 @@ function contatosDocentesHandler(req, res, next) {
 
   res.locals.out = { err : null , contatos : [] , status : false };
   
-  function contatosHandler() {
+  return function contatosHandler() {
     if(contatos){
       res.locals.out.contatos = contatos;
       res.locals.out.status = true;
@@ -14,8 +14,6 @@ function contatosDocentesHandler(req, res, next) {
       res.locals.out.err = "nenhum contado";
     }
     next();
-  }
-  
-  return contatosHandler();   
+  };   
 }
 module.exports = exports = contatosDocentesHandler;

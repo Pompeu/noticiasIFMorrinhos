@@ -1,5 +1,6 @@
 function pushHandler () {
-	
+	'use strict';
+  
 	debug("plugin push Handler");
 
 	var pushbots = require('pushbots');
@@ -10,7 +11,6 @@ function pushHandler () {
 	});
 
 	Pushbots.setMessage("Novas Noticias Ok" ,1);
-
 }
 
 module.exports = exports = pushHandler;
