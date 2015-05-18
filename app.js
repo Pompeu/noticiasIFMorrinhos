@@ -7,7 +7,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     noticias = require('./middlewares');
 
-noticias.atualizarnoticias();
+//noticias.atualizarnoticias();
 
 
 var routes = require('./routes/index'),
@@ -26,20 +26,20 @@ function connectionHandlerLocal(err) {
 }
 
 
-var local = 'mongodb://localhost/noticias';
+// var local = 'mongodb://localhost/noticias';
  
-var mongolab = 'mongodb://pompeu:552525@ds049130.mongolab.com:49130/pompeuapi';
+// var mongolab = 'mongodb://pompeu:552525@ds049130.mongolab.com:49130/pompeuapi';
 
-mongoose
-    .connect(mongolab)
-    .connection
-    .on('connected', connectionHandler)
-    .on('error',function() {
-        mongoose
-        .connect(local)
-        .connection
-        .on('connected', connectionHandlerLocal);
-    });
+// mongoose
+//     .connect(mongolab)
+//     .connection
+//     .on('connected', connectionHandler)
+//     .on('error',function() {
+//         mongoose
+//         .connect(local)
+//         .connection
+//         .on('connected', connectionHandlerLocal);
+//     });
  
 
 // view engine setup
