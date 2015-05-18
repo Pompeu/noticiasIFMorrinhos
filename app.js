@@ -7,7 +7,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     noticias = require('./middlewares');
 
-//noticias.atualizarnoticias();
+noticias.atualizarnoticias();
 
 
 var routes = require('./routes/index'),
