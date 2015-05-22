@@ -5,7 +5,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     mongoose = require('mongoose'),
-    noticias = require('./middlewares');
+    noticias = require('./middlewares'),
+    dburl = require('./configs/index').db;
 
 noticias.atualizarnoticias();
 
@@ -18,28 +19,14 @@ var routes = require('./routes/index'),
 var app = express();
 
 function connectionHandler(err ,res) {
-    debug( err || 'on mongolab');
+    debug(arguments);
 }
-
-function connectionHandlerLocal(err) {
-    debug( err || 'on local');
-}
-
-
-var local = 'mongodb://localhost/noticias';
- 
-var mongolab = 'mongodb://pompeu:552525@ds049130.mongolab.com:49130/pompeuapi';
 
 mongoose
-    .connect(mongolab)
+    .connect(dburl)
     .connection
-    .on('connected', connectionHandler)
-    .on('error',function() {
-        mongoose
-        .connect(local)
-        .connection
-        .on('connected', connectionHandlerLocal);
-    });
+    .on('connected', connectionHandler);
+    
  
 
 // view engine setup
